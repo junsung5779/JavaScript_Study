@@ -152,3 +152,265 @@ log 메소드 외 활용할 수 있는 다른 console 메소드들
 * info(정보)
 * warn(경고)
 
+## 010.조건문 배우기 - if
+
+if문 기본 사용법
+
+```
+if (표현식)
+	명령문
+```
+
+
+
+여러가지 if문 사용법 예시
+
+```javascript
+var result = true;
+if (result) console.log('result 가 참 입니다.');
+if (!result)
+  console.log('실행되지 않습니다.');
+if (result) {
+  console.log('result 의 결과');
+  console.log('>> 참 입니다.');
+}
+```
+
+## 011.조건문 배우기 - if, else if, else
+
+else if와 else는 if의 결과값이 false일 때 추가 실행되는 조건문이다.
+
+else if, else 기본 사용법
+
+```
+if (표현식1) {
+	명령문1
+} else if (표현식2) {
+	명령문2
+} else {
+	명령문3
+}
+```
+
+
+
+else if, else문 사용법 예시
+
+```javascript
+var number = 2;
+if (number == 1) {
+  console.log('number 는 1 입니다');
+} else if (number == 2) {
+  console.log('number 는 2 입니다');
+} else if (number == 3) {
+  console.log('number 는 3 입니다');
+} else {
+  console.log('number 는 1,2,3 중 해당되는 것이 없습니다.');
+}
+```
+
+## 012.조건문 배우기 - switch
+
+switch문장 기본 사용법
+
+```javascript
+switch(표현식){
+	case 값1:
+		명령문1
+		break;
+	case 값2:
+		명령문2
+		break;
+	default:
+		명령문3
+}
+```
+
+먼저 switch 표현식의 값을 확인하고 case의 값과 일치 여부를 확인한다. 이 때 === 일치 연산자를 사용한다.
+
+case의 값과 표현식이 일치했을 경우 해당 명령문을 실행한다.
+
+여러 case가 있을 경우 위에서부터 순차적으로 일치한 값이 나올 때까지 case값을 확인하며 내려간다.
+
+break는 그 다음의 코드들을 더이상 실행하지 않고 switch 조건문을 끝내는 역할을 수행한다.
+
+만약 일치하는 case값이 없는 경우 마지막 default로 선언된 명령문이 실행된다.
+
+switch 문장 사용법 예시
+
+```javascript
+var subject = '자바스크립트';
+switch (subject) {
+  case 'C언어':
+    console.log('초보자를 위한 C++ 200제');
+    break;
+  case '자바스크립트':
+    console.log('초보자를 위한 자바스크립트 200제');
+    break;
+  case '파이썬':
+    console.log('초보자를 위한 파이썬 200제');
+    break;
+  default:
+    console.log('이젠 초보자가 아닙니다');
+    break;
+}
+
+```
+
+## 013.반복문 배우기 - for
+
+for 반복문은 특정 코드를 반복하는 흐름을 제어한다.
+
+반복문을 통해 언제부터 어디까지 실행할지, 그리고 몇 번을 반복할지도 설정할 수 있다.
+
+반복문 기본 사용법
+
+```
+for (초기값; 조건식; 어떤 간격으로) {
+	실행할 문장
+}
+```
+
+반복문 사용 예시
+
+```javascript
+for (var i = 0; i < 10; i++) {
+	console.log(i + '번째 반복 문장 입니다.');
+}
+```
+
+다양한 반복문 사용 예시
+
+```javascript
+var hometown = [
+	{name: '남준', place: '일산', city: '고양'},
+	{name: '진', place: '과천'},
+	{name: '호석', place: '광주', city: '전라도'},
+	{name: '지민', place: '부산', city: '경상도'}
+];
+
+for (var i = 0; i < hometown.length; i++) {
+	var h = hometown[i];
+    // 배열에서 가져온 요소의 정보가 없는 경우, continue를 통해 다음 순서(요소)로 넘어가게 된다.
+	if (!h || !h.city) continue;
+
+	console.log(i + ' 번째 실행입니다.');
+	
+	if (h.name === '호석') {
+		console.log(h.name + '의 고향은 ' + h.city + ' ' + h.place + ' 입니다.');
+		break;
+	}
+}
+```
+
+for 문에는 break와 continue를 통해 반복문의 흐름을 제어할 수 있다.
+
+continue는 지시자가 놓인 지점 다음의 문장들은 무시되고 다음 반복으로 넘어가게 한다.
+
+break는 break가 있는 지점까지만 실행되고 반복문을 종료한다.
+
+## 014.반복문 배우기 - for in
+
+for in 반복문은 in 키워드를 사이에 두고 오른쪽에는 반복할 대상 변수를, 왼쪽에는 속성명을 작성한다.
+
+```
+for (속성명 in 반복할 대상) {
+	
+}
+```
+
+반복문을 통해 내부 요소를 하나씩 순회할 때마다, 각 요소의 키(Key)정보가 for in에서 정의한 속성명으로 선언과 동시에 할당된다.
+
+for in 사용 예시
+
+```javascript
+var store = { snack: 1000, flower: 5000, beverage: 2000 };
+
+for (var item in store) {
+  if (!store.hasOwnProperty(item)) continue;
+
+  console.log(item + ' 는 가격이 ' + store[item] + ' 입니다.')
+}
+```
+
+매 반복마다 hasOwnProperty를 이용하여 store객체에 item 키 정보가 있는지 확인하고, 없으면 continue를 통해 아래 코드는 실행하지 않고 다음 순서로 넘어간다.
+
+## 015.반복문 배우기 - while
+
+while 반복문은 지시어 while로 시작한다. 그 다음 소괄호 () 안에 조건식이 들어가는데, 이 조건식의 결과값은 true 또는 false만 가능하다.
+
+조건식이 true를 만족하는 경우에만 중괄호 {} 안의 문장들이 실행된다.
+
+조건식이 false가 되면 더이상 반복 실행하지 않는다.
+
+while 반복문에서도 break와 continue문을 사용할 수 있다.
+
+while문 사용법
+
+```
+while (조건식) {
+	반복하게 될 문장
+}
+```
+
+do-while 반복문은 처음은 조건 결과와 상관없이 무조건 문장을 실행(do)한다.
+
+그리고 조건식의 결과값을 확인하고 다음의 흐름은 이전 while문고 ㅏ동일하다.
+
+do-while문 사용법
+
+```
+do {
+	반복하게 될 문장
+}  while (조건식)
+```
+
+while문 활용 예시
+
+```javascript
+var hometown = [
+	{name: '진', city: '과천'},
+	{name: '남준', place: '일산', city: '고양'},
+	{name: '호석', place: '광주', city: '전라도'},
+	{name: '지민', place: '부산', city: '경상도'}
+];
+
+// 인자값을 h와 name으로 받는 함수 isHometown을 선언한다.
+var isHometown = function(h, name) {
+	console.log(`함수가 실행되었습니다. ${h.city} 도시에서 ${name} 을 찾습니다.`);
+	// 객체인 h의 name과 인자로 받은 name이 같은경우 console.log를 출력하고 true를 반환한다.
+	if (h.name === name) {
+		console.log(`${h.name} 의 고향은 ${h.city} ${h.place} 입니다.`);
+		return true;
+	}	
+    // 객체인 h의 name과 인자로 받은 name이 다른경우 false를 반환하며 함수를 종료시킨다.
+	return false;
+}
+
+var h;
+
+// h변수에 hometown.shift()로 반환된 값을 할당하는 것과 동시에 할당된 값을 확인한다.
+// hometown의 요소는 객체로 채워져 있어 값이 유효한 경우 true, 유효하지 않으면 false를 반환하고 이를 통해 반복문을 실행한다.
+while (h = hometown.shift()) {
+    // 변수 h에 할당된 객체의 name, place, city 속성들 중에 하나라도 없는 경우 continue문을 통해 바로 반복문의 다음 순서로 넘어간다.
+    // 모두 있다면 아래 문장들이 실행되고 반복문의 다음 순서로 넘어간다.
+	if (!h.name || !h.place || !h.city) continue;
+	// isHometown함수에 h변수와 '호석'값을 넣어 결과를 반환받는다.
+	var result = isHometown(h, '호석');
+    // result값이 true이면 break문을 통해 while반복문을 종료시킨다.
+	if (result) break;
+}
+
+var i = 0;
+var names = ['남준', '정국', '윤기', '호섭'];
+var cities = ['경기', '부산', '대구', '광주'];
+do {
+	hometown[i] = {name: names[i], city: cities[i]};
+	i++;
+} while (i < 4);
+
+console.log(hometown);
+```
+
+shift()는 배열의 앞에서부터 값을 하나씩 뺴내오는 함수이다.
+예를 들어, [1, 2]배열에 shift()가 실행되어 1이 방출되면, 해당 배열은 [2]가 된다.
